@@ -1,0 +1,70 @@
+body{
+    background: linear-gradient(135deg,#4facfe,#00c6ff);
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.container{
+    margin-top:40px;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.dashboard-card h2{
+    font-weight:bold;
+}
+
+.table{
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.table thead{
+    background:#0d6efd;
+    color:white;
+}
+
+.btn{
+    border-radius:10px;
+}
+
+.btn:hover{
+    transform:scale(1.03);
+    transition:.2s;
+}
+
+.form-control{
+    border-radius:10px;
+}
+
+.header{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.upload-card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    margin-bottom:25px;
+}
+
+.records-card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
