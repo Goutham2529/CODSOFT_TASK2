@@ -13,5 +13,15 @@
         "name": "Ravi",
         "email": "ravi@gmail.com",
         "phone": "9988767644"
+    },
+    {
+        "name": "gopi",
+        "email": "gopi@gmail.com",
+        "phone": "9876543201"
+    },
+    {
+        "name": "Seta",
+        "email": "seta@gmail.com",
+        "phone": "9123476780"
     }
 ]

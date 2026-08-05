@@ -37,9 +37,9 @@ def home():
 
     records = load_records()
 
-    total_records = len(records)
-    unique_records = len(records)
-    duplicates_removed = session.get("duplicates", 0)
+    total_records = session.get("total_records", len(records))
+    unique_records = session.get("unique_records", len(records))
+    duplicates_removed = session.get("duplicates_removed", 0)
 
     return render_template(
         "index.html",
@@ -72,25 +72,12 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/logout")
-def logout():
-
-    session.pop("user", None)
-
-    flash("Logged Out Successfully!")
-
-    return redirect("/login")
-
-
 @app.route("/download-sample")
 def download_sample():
 
     sample_file = os.path.join(app.root_path, "sample.csv")
 
-    return send_file(
-        sample_file,
-        as_attachment=True
-    )
+    return send_file(sample_file, as_attachment=True)
 
 
 @app.route("/upload", methods=["POST"])
@@ -100,61 +87,35 @@ def upload():
         return redirect("/login")
 
     if "file" not in request.files:
-
         flash("Please choose a CSV file.")
-
         return redirect("/")
 
     file = request.files["file"]
 
     if file.filename == "":
-
         flash("Please choose a CSV file.")
-
         return redirect("/")
 
     if not file.filename.lower().endswith(".csv"):
-
         flash("Only CSV files are allowed.")
-
         return redirect("/")
 
-    filepath = os.path.join(
-        UPLOAD_FOLDER,
-        file.filename
-    )
-
+    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(filepath)
 
     records = load_records()
 
-    existing_emails = set()
-
-    existing_phones = set()
-
-    for record in records:
-
-        existing_emails.add(
-            record["email"].lower()
-        )
-
-        existing_phones.add(
-            record["phone"]
-        )
+    existing_emails = {r["email"].lower() for r in records}
+    existing_phones = {r["phone"] for r in records}
 
     csv_emails = set()
-
     csv_phones = set()
 
-    duplicates = 0
+    total_uploaded = 0
+    duplicates_removed = 0
+    unique_records = 0
 
-    new_records = 0
-
-    with open(
-        filepath,
-        "r",
-        encoding="utf-8"
-    ) as csvfile:
+    with open(filepath, "r", encoding="utf-8") as csvfile:
 
         reader = csv.DictReader(csvfile)
 
@@ -167,14 +128,15 @@ def upload():
             if not name or not email or not phone:
                 continue
 
+            total_uploaded += 1
+
             if (
                 email in existing_emails
                 or phone in existing_phones
                 or email in csv_emails
                 or phone in csv_phones
             ):
-
-                duplicates += 1
+                duplicates_removed += 1
                 continue
 
             records.append({
@@ -189,19 +151,30 @@ def upload():
             csv_emails.add(email)
             csv_phones.add(phone)
 
-            new_records += 1
+            unique_records += 1
 
     save_records(records)
 
-    session["duplicates"] = duplicates
+    session["total_records"] = total_uploaded
+    session["unique_records"] = unique_records
+    session["duplicates_removed"] = duplicates_removed
 
     flash(
         f"Upload Complete! "
-        f"Saved: {new_records} | "
-        f"Duplicates Removed: {duplicates}"
+        f"Uploaded: {total_uploaded} | "
+        f"Unique: {unique_records} | "
+        f"Duplicates: {duplicates_removed}"
     )
 
     return redirect("/")
+@app.route("/logout")
+def logout():
+
+    session.clear()
+
+    flash("Logged Out Successfully!")
+
+    return redirect("/login")
 
 
 @app.route("/delete/<email>")
@@ -224,6 +197,7 @@ def delete(email):
 
     return redirect("/")
 
+
 @app.route("/reset")
 def reset():
 
@@ -231,6 +205,10 @@ def reset():
         return redirect("/login")
 
     save_records([])
+
+    session["total_records"] = 0
+    session["unique_records"] = 0
+    session["duplicates_removed"] = 0
 
     flash("All records deleted successfully!")
 
@@ -240,4 +218,3 @@ def reset():
 if __name__ == "__main__":
 
     app.run(debug=True)
-
