@@ -115,21 +115,20 @@ The dashboard displays:
 
 ### 🔐 Login Page
 
-_Add screenshot here_
+<img width="1909" height="910" alt="login" src="https://github.com/user-attachments/assets/4fc12048-d643-4ef7-9e28-40f813d1fde9" />
 
 ### 📊 Dashboard
 
-_Add screenshot here_
+<img width="1879" height="909" alt="dashboard" src="https://github.com/user-attachments/assets/c0e1c2cc-0712-445d-9021-1133bd2e8432" />
 
 ### 📤 Upload CSV
 
-_Add screenshot here_
+<img width="1870" height="625" alt="upload csv" src="https://github.com/user-attachments/assets/817812e3-25ea-4543-b18d-b8df32010241" />
 
 ### 📋 Stored Records
 
-_Add screenshot here_
+<img width="1850" height="493" alt="stored records" src="https://github.com/user-attachments/assets/a88329a3-46ec-42d4-866c-fa0e942c33e4" />
 
----
 
 ## 🌐 Live Demo
 
