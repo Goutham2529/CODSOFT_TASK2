@@ -81,6 +81,7 @@ cloud-data-deduplication/
 ```
 
 ## 🔐 Demo Login
+Login : https://codsoft-task2-e9wj.onrender.com
 
 **Username:** `admin`
 
@@ -197,23 +198,28 @@ screenshots/
 
 ### 🔐 Premium Login Page
 
-![Premium Login Page](screenshots/login.png)
+<img width="1882" height="896" alt="login" src="https://github.com/user-attachments/assets/eebf8e51-0758-4877-b878-ecc399b774e5" />
+
 
 ### 📊 Premium Dashboard
 
-![Premium Dashboard](screenshots/dashboard.png)
+<img width="1873" height="895" alt="dashboard" src="https://github.com/user-attachments/assets/f445989a-b263-4aff-8ed6-b961eb72d326" />
+
 
 ### 📤 CSV Upload
 
-![CSV Upload](screenshots/upload.png)
+<img width="1879" height="898" alt="upload" src="https://github.com/user-attachments/assets/483c8d42-5148-431e-840b-b16f3d1148c7" />
+
 
 ### 🔍 Records & Search
 
-![Records and Search](screenshots/records.png)
+<img width="1893" height="901" alt="records" src="https://github.com/user-attachments/assets/8311b161-5e94-46be-83c1-83a5f90422b9" />
+
 
 ### 📈 Duplicate Detection
 
-![Duplicate Detection](screenshots/duplicates.png)
+<img width="1904" height="756" alt="duplicate records" src="https://github.com/user-attachments/assets/52028894-3b5d-4c94-ae4e-12ba2ac84359" />
+
 
 ## ☁️ Cloud Deployment
 
@@ -252,7 +258,9 @@ The project includes `requirements.txt` and `runtime.txt` for deployment support
 
 **Cloud Data Deduplication System**
 
-Developed as part of the **CODSOFT Cloud Computing Internship**.
+## Developed by 
+
+Goutham
 
 ## ⭐ Acknowledgement
 
