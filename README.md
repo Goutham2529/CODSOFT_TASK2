@@ -1,170 +1,171 @@
-# ☁️ Cloud Data Deduplication System
+☁️ Cloud Data Deduplication System
 
-A premium web-based **Cloud Data Deduplication System** built using Python Flask.
+A premium web-based Cloud Data Deduplication System built using Python Flask.
 
 This application allows users to upload CSV files, automatically detect duplicate records using Email or Phone Number, remove duplicates, and download the cleaned dataset.
 
----
-
-## 🚀 Features
-
-- 📤 CSV File Upload
-- 🔍 Automatic Duplicate Detection
-- 📧 Email-based Duplicate Detection
-- 📱 Phone Number-based Duplicate Detection
-- 📊 Premium Dashboard
-- 🔎 Search Records
-- 🗑️ Delete Individual Records
-- 🧹 Clear All Records
-- 📥 Download Cleaned CSV
-- 📄 Download Sample CSV
-- 🔐 Login Authentication
-- 📈 Record Statistics
-- 🖱️ Drag & Drop CSV Upload
-- 📱 Responsive Design
-- ✨ Premium Animations
-- 🩺 Application Health Check
-
----
-
-## 🧠 Duplicate Detection
+🚀 Features
+📤 CSV File Upload
+🔍 Automatic Duplicate Detection
+📧 Email-based Duplicate Detection
+📱 Phone Number-based Duplicate Detection
+📊 Premium Dashboard
+🔎 Search Records
+🗑️ Delete Individual Records
+🧹 Clear All Records
+📥 Download Cleaned CSV
+📄 Download Sample CSV
+🔐 Login Authentication
+📈 Record Statistics
+🖱️ Drag & Drop CSV Upload
+📱 Responsive Design
+✨ Premium Animations
+🩺 Application Health Check
+🧠 Duplicate Detection
 
 The system identifies a record as a duplicate when either the email address or phone number already exists.
 
-| Email | Phone | Result |
-|---|---|---|
-| Same | Different | ❌ Duplicate |
-| Different | Same | ❌ Duplicate |
-| Same | Same | ❌ Duplicate |
-| Different | Different | ✅ New Record |
+Email	Phone	Result
+Same	Different	❌ Duplicate
+Different	Same	❌ Duplicate
+Same	Same	❌ Duplicate
+Different	Different	✅ New Record
+Example
 
-### Example
+Rahul — rahul@gmail.com — 9876543210
 
-```text
-Rahul   rahul@gmail.com   9876543210
-Arjun   arjun@gmail.com   9876543210
+Arjun — arjun@gmail.com — 9876543210
 
----
+The second record is detected as a duplicate because the phone number already exists.
 
-## 🛠️ Technologies Used
+🛠️ Technologies Used
+Python
+Flask
+HTML5
+CSS3
+JavaScript
+Bootstrap 5
+Font Awesome
+JSON
+CSV
+Git
+GitHub
+📂 Project Structure
 
-- Python
-- Flask
-- HTML5
-- CSS3
-- Bootstrap 5
-- JSON
-- CSV
-
----
-
-## 📂 Project Structure
-
-```
 cloud-data-deduplication/
-│
+
 ├── app.py
 ├── records.json
-├── sample.csv
 ├── requirements.txt
-├── Procfile
-├── runtime.txt
-│
-├── static/
-│   └── style.css
-|   └── script.js
+├── README.md
 │
 ├── templates/
-│   ├── login.html
-│   └── index.html
+│ ├── index.html
+│ └── login.html
+│
+├── static/
+│ ├── style.css
+│ └── script.js
 │
 └── uploads/
-```
 
----
+🔐 Demo Login
 
-## 🚀 Installation
+Username: admin
 
-Clone the repository
+Password: admin123
 
-```bash
+▶️ How to Run
+1. Clone the repository
+
 git clone https://github.com/Goutham2529/CODSOFT_TASK2.git
-```
 
-Move into the project folder
+2. Open the project folder
 
-```bash
 cd CODSOFT_TASK2
-```
 
-Install dependencies
+3. Install dependencies
 
-```bash
 pip install -r requirements.txt
-```
 
-Run the application
+4. Run the application
 
-```bash
 python app.py
-```
 
----
+5. Open in browser
 
-## 🔑 Login Credentials
+http://127.0.0.1:5000
 
-**Username**
+🔄 Application Workflow
 
-```
-admin
-```
+User Login
+↓
+Premium Dashboard
+↓
+Upload CSV
+↓
+Read CSV Records
+↓
+Normalize Data
+↓
+Check Email / Phone
+↓
+Duplicate?
+↓
+Skip Duplicate / Save New Record
+↓
+Clean Dataset
+↓
+Download CSV
 
-**Password**
+📊 Dashboard
 
-```
-admin123
-```
+The dashboard provides:
 
----
+Total Records
+Unique Records
+Duplicates Removed
+Unique Emails
+Searchable Records
+Record Management
+🔍 Record Management
 
-## 📊 Dashboard
+Users can:
 
-The dashboard displays:
+Search records
+Delete individual records
+Clear all records
+Export cleaned records
+Download sample CSV files
+🔮 Future Enhancements
+☁️ Cloud database integration
+🔐 Secure authentication
+👥 Multiple user accounts
+📊 Advanced analytics
+📈 Data visualization
+🗄️ PostgreSQL / MongoDB integration
+🔗 Cloud storage integration
+⚡ Background CSV processing
+🎯 Internship Task
 
-- Total Uploaded Records
-- Unique Records
-- Duplicate Records Removed
-- Unique Emails
+Internship: CODSOFT Cloud Computing Internship
 
----
+Task: Cloud Data Deduplication System
 
-## 📸 Screenshots
+Project Type: Web Application
 
-### 🔐 Login Page
+Technology: Python Flask
 
-<img width="1909" height="910" alt="login" src="https://github.com/user-attachments/assets/4fc12048-d643-4ef7-9e28-40f813d1fde9" />
+👨‍💻 Project
 
-### 📊 Dashboard
+Cloud Data Deduplication System
 
-<img width="1879" height="909" alt="dashboard" src="https://github.com/user-attachments/assets/c0e1c2cc-0712-445d-9021-1133bd2e8432" />
+Developed as part of the CODSOFT Cloud Computing Internship.
 
-### 📤 Upload CSV
+⭐ Acknowledgement
 
-<img width="1870" height="625" alt="upload csv" src="https://github.com/user-attachments/assets/817812e3-25ea-4543-b18d-b8df32010241" />
+This project was developed as part of the CODSOFT internship task requirements.
 
-### 📋 Stored Records
+📄 License
 
-<img width="1850" height="493" alt="stored records" src="https://github.com/user-attachments/assets/a88329a3-46ec-42d4-866c-fa0e942c33e4" />
-
-
-## 🌐 Live Demo
-
-https://codsoft-task2-e9wj.onrender.com
-
----
-
-## 👨‍💻 Developed By
-
-Goutham
-
-CodSoft Cloud Computing Internship – Task 2
+This project is created for educational and internship purposes.
