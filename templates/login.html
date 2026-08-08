@@ -4,175 +4,294 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cloud Data Deduplication</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Data Deduplication | Login
+    </title>
 
-    <style>
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-        body{
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-            height:100vh;
-
-            display:flex;
-
-            justify-content:center;
-
-            align-items:center;
-
-            background:linear-gradient(135deg,#4facfe,#00f2fe);
-
-            font-family:Arial,Helvetica,sans-serif;
-
-        }
-
-        .login-card{
-
-            width:420px;
-
-            background:white;
-
-            border-radius:20px;
-
-            padding:35px;
-
-            box-shadow:0 10px 30px rgba(0,0,0,.25);
-
-        }
-
-        .logo{
-
-            font-size:55px;
-
-            text-align:center;
-
-        }
-
-        h2{
-
-            font-weight:bold;
-
-        }
-
-        .btn-primary{
-
-            border-radius:10px;
-
-            font-size:18px;
-
-        }
-
-    </style>
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
+
 <body>
 
-<div class="login-card">
 
-    <div class="logo">
+<div class="login-container">
 
-        ☁️
 
-    </div>
+    <div class="login-card">
 
-    <h2 class="text-center text-primary">
 
-        ☁️Cloud Data Deduplication System
+        <!-- Logo -->
 
-    </h2>
+        <div class="text-center mb-4">
 
-    <p class="text-center text-muted mb-4">
+            <div class="login-icon">
 
-        Secure Login Portal
+                <i class="fa-solid fa-database"></i>
 
-    </p>
+            </div>
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
+            <h2 class="mt-3">
 
-        <div class="alert alert-warning alert-dismissible fade show">
+                Data Deduplication
 
-            {{ message }}
+            </h2>
 
-            <button class="btn-close" data-bs-dismiss="alert"></button>
+            <p>
 
-        </div>
+                Smart Cloud Data Management
 
-        {% endfor %}
-    {% endif %}
-    {% endwith %}
-
-    <form method="POST">
-
-        <div class="mb-3">
-
-            <label class="form-label">
-
-                Username
-
-            </label>
-
-            <input
-                type="text"
-                name="username"
-                class="form-control"
-                placeholder="Enter Username"
-                required>
+            </p>
 
         </div>
 
-        <div class="mb-4">
 
-            <label class="form-label">
+        <!-- Flash Messages -->
 
-                Password
+        {% with messages = get_flashed_messages(
+            with_categories=true
+        ) %}
 
-            </label>
+            {% if messages %}
 
-            <input
-                type="password"
-                name="password"
-                class="form-control"
-                placeholder="Enter Password"
-                required>
+                {% for category, message in messages %}
+
+                    <div
+                        class="alert alert-{{ category }}">
+
+                        {% if category == "success" %}
+
+                            <i class="fa-solid
+                                      fa-circle-check">
+                            </i>
+
+                        {% else %}
+
+                            <i class="fa-solid
+                                      fa-circle-exclamation">
+                            </i>
+
+                        {% endif %}
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- Login Form -->
+
+        <form
+            method="POST"
+            action="/login">
+
+
+            <!-- Username -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Username
+
+                </label>
+
+                <div class="input-with-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        name="username"
+                        class="form-control"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Password
+
+                </label>
+
+                <div class="input-with-icon">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="form-control"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword()">
+
+                        <i
+                            id="passwordIcon"
+                            class="fa-solid fa-eye">
+                        </i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Login Button -->
+
+            <button
+                type="submit"
+                class="btn btn-primary w-100 login-btn">
+
+                <i class="fa-solid
+                          fa-right-to-bracket">
+                </i>
+
+                Sign In
+
+            </button>
+
+
+        </form>
+
+
+        <!-- Demo Credentials -->
+
+        <div class="demo-box mt-4">
+
+            <div class="text-center">
+
+                <small>
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    Demo Credentials
+
+                </small>
+
+            </div>
+
+            <div class="demo-credentials">
+
+                <span>
+
+                    <strong>Username:</strong>
+                    admin
+
+                </span>
+
+                <span>
+
+                    <strong>Password:</strong>
+                    admin123
+
+                </span>
+
+            </div>
 
         </div>
 
-        <button class="btn btn-primary w-100">
 
-            Login
+        <!-- Footer -->
 
-        </button>
+        <div class="login-footer">
 
-    </form>
+            <i class="fa-solid fa-shield-halved"></i>
 
-    <hr>
+            Secure Data Management System
 
-    <div class="text-center">
+        </div>
 
-        <small class="text-muted">
-
-            Demo Credentials
-
-        </small>
-
-        <br>
-
-        <strong>Username:</strong> admin
-
-        <br>
-
-        <strong>Password:</strong> admin123
 
     </div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const icon =
+        document.getElementById("passwordIcon");
+
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        icon.classList.remove(
+            "fa-eye"
+        );
+
+        icon.classList.add(
+            "fa-eye-slash"
+        );
+
+    } else {
+
+        password.type = "password";
+
+        icon.classList.remove(
+            "fa-eye-slash"
+        );
+
+        icon.classList.add(
+            "fa-eye"
+        );
+
+    }
+
+}
+
+</script>
+
 
 </body>
 

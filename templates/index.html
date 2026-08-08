@@ -5,119 +5,246 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Cloud Data Deduplication System</title>
+    <title>
+        Cloud Data Deduplication
+    </title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
+
 <body>
 
-<div class="container">
+<div class="container py-4">
 
-    <!-- Header -->
+    <!-- =====================================
+         HEADER
+    ====================================== -->
 
-    <div class="header d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between
+                align-items-center
+                flex-wrap
+                gap-3
+                mb-4">
 
-        <h2 class="fw-bold text-primary">
+        <div>
 
-            ☁️ Cloud Data Deduplication System
+            <h2 class="text-white fw-bold mb-1">
 
-        </h2>
+                <i class="fa-solid fa-database"></i>
 
-        <a href="/logout" class="btn btn-danger">
+                Cloud Data Deduplication
 
-            Logout
+            </h2>
 
-        </a>
+            <p class="text-light mb-0">
+
+                Smart CSV duplicate detection system
+
+            </p>
+
+        </div>
+
+
+        <div class="d-flex gap-2">
+
+            <a href="/download"
+               class="btn btn-success">
+
+                <i class="fa-solid fa-download"></i>
+
+                Export CSV
+
+            </a>
+
+
+            <a href="/logout"
+               class="btn btn-danger">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </div>
 
     </div>
 
 
-    <!-- Flash Messages -->
+    <!-- =====================================
+         FLASH MESSAGES
+    ====================================== -->
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
+    {% with messages = get_flashed_messages(
+        with_categories=true
+    ) %}
 
-        <div class="alert alert-success alert-dismissible fade show">
+        {% if messages %}
 
-            {{ message }}
+            {% for category, message in messages %}
 
-            <button class="btn-close" data-bs-dismiss="alert"></button>
+                <div class="alert alert-{{ category }}">
 
-        </div>
+                    {% if category == "success" %}
 
-        {% endfor %}
-    {% endif %}
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    {% elif category == "danger" %}
+
+                        <i class="fa-solid fa-circle-exclamation"></i>
+
+                    {% else %}
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                    {% endif %}
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
     {% endwith %}
 
 
-    <!-- Dashboard Cards -->
+    <!-- =====================================
+         DASHBOARD CARDS
+    ====================================== -->
 
-    <div class="row mb-4">
+    <div class="row g-4 mb-4">
 
-        <div class="col-md-4 mb-3">
 
-            <div class="card dashboard-card">
+        <!-- Total Records -->
 
-                <div class="card-body text-center">
+        <div class="col-lg-3 col-md-6">
 
-                    <h5>📄 Total Records</h5>
+            <div class="dashboard-card">
 
-                    <h2 class="text-primary">
+                <div class="dashboard-icon">
 
-                        {{ total_records }}
-
-                    </h2>
+                    <i class="fa-solid fa-database"></i>
 
                 </div>
+
+                <h6>
+                    Total Records
+                </h6>
+
+                <h2>
+                    {{ total_records }}
+                </h2>
+
+                <small>
+                    Records in database
+                </small>
 
             </div>
 
         </div>
 
 
-        <div class="col-md-4 mb-3">
+        <!-- Unique Records -->
 
-            <div class="card dashboard-card">
+        <div class="col-lg-3 col-md-6">
 
-                <div class="card-body text-center">
+            <div class="dashboard-card">
 
-                    <h5>✅ Unique Records</h5>
+                <div class="dashboard-icon">
 
-                    <h2 class="text-success">
-
-                        {{ unique_records }}
-
-                    </h2>
+                    <i class="fa-solid fa-circle-check"></i>
 
                 </div>
+
+                <h6>
+                    Unique Records
+                </h6>
+
+                <h2>
+                    {{ unique_records }}
+                </h2>
+
+                <small>
+                    Clean records
+                </small>
 
             </div>
 
         </div>
 
 
-        <div class="col-md-4 mb-3">
+        <!-- Duplicates -->
 
-            <div class="card dashboard-card">
+        <div class="col-lg-3 col-md-6">
 
-                <div class="card-body text-center">
+            <div class="dashboard-card">
 
-                    <h5>❌ Duplicates Removed</h5>
+                <div class="dashboard-icon">
 
-                    <h2 class="text-danger">
-
-                        {{ duplicates_removed }}
-
-                    </h2>
+                    <i class="fa-solid fa-copy"></i>
 
                 </div>
+
+                <h6>
+                    Duplicates Removed
+                </h6>
+
+                <h2>
+                    {{ duplicates_removed }}
+                </h2>
+
+                <small>
+                    From last upload
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Emails -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                </div>
+
+                <h6>
+                    Unique Emails
+                </h6>
+
+                <h2>
+                    {{ unique_emails }}
+                </h2>
+
+                <small>
+                    Unique email IDs
+                </small>
 
             </div>
 
@@ -126,173 +253,432 @@
     </div>
 
 
-    <!-- Upload Section -->
+    <!-- =====================================
+         UPLOAD SECTION
+    ====================================== -->
 
-    <div class="upload-card">
+    <div class="card shadow-lg p-4 mb-4">
 
-        <h4 class="mb-3">
+        <div class="d-flex justify-content-between
+                    align-items-center
+                    flex-wrap
+                    gap-2
+                    mb-3">
 
-            📤 Upload CSV File
+            <h4 class="mb-0">
 
-        </h4>
+                <i class="fa-solid fa-cloud-arrow-up"></i>
 
-        <form action="/upload" method="POST" enctype="multipart/form-data">
+                Upload CSV
 
-            <div class="row g-2">
+            </h4>
 
-                <div class="col-md-5">
 
-                    <input
-                        type="file"
-                        name="file"
-                        class="form-control"
-                        accept=".csv"
-                        required>
+            <a href="/sample"
+               class="btn btn-outline-primary">
 
-                </div>
+                <i class="fa-solid fa-file-csv"></i>
 
-                <div class="col-md-2 d-grid">
+                Download Sample CSV
 
-                    <button class="btn btn-primary">
+            </a>
 
-                        Upload
+        </div>
 
-                    </button>
 
-                </div>
+        <form
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data">
 
-                <div class="col-md-2 d-grid">
 
-                    <a href="/download-sample"
-                       class="btn btn-success">
+            <div id="dropArea"
+                 class="drop-area">
 
-                        Sample CSV
+                <i class="fa-solid
+                          fa-cloud-arrow-up
+                          fa-3x">
+                </i>
 
-                    </a>
 
-                </div>
+                <h5 class="mt-3">
 
-                <div class="col-md-3 d-grid">
+                    Drag & Drop your CSV here
 
-                    <a href="/reset"
-                       class="btn btn-warning"
-                       onclick="return confirm('Delete all records?')">
+                </h5>
 
-                        Reset Database
 
-                    </a>
+                <p>
 
-                </div>
+                    or select a CSV file from your computer
+
+                </p>
+
+
+                <input
+                    type="file"
+                    name="file"
+                    id="fileInput"
+                    accept=".csv"
+                    hidden
+                    required>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="document
+                    .getElementById('fileInput')
+                    .click()">
+
+                    <i class="fa-solid fa-folder-open"></i>
+
+                    Choose CSV File
+
+                </button>
+
+
+                <p id="selectedFile"
+                   class="mt-3 mb-0">
+
+                    No file selected
+
+                </p>
 
             </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-success w-100 mt-3">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Upload & Remove Duplicates
+
+            </button>
 
         </form>
 
     </div>
+    <!-- =====================================
+         SEARCH SECTION
+    ====================================== -->
+
+    <div class="card shadow-lg p-4 mb-4">
+
+        <div class="row align-items-center g-3">
+
+            <div class="col-md-5">
+
+                <h4 class="mb-1">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Search Records
+
+                </h4>
+
+                <small class="text-muted">
+
+                    Search by name, email or phone
+
+                </small>
+
+            </div>
 
 
-    <!-- Records -->
+            <div class="col-md-7">
 
-    <div class="records-card">
+                <form
+                    action="/search"
+                    method="GET">
 
-        <h4 class="mb-3">
+                    <div class="input-group">
 
-            📋 Stored Records
+                        <input
+                            type="text"
+                            name="q"
+                            value="{{ search_query|default('') }}"
+                            class="form-control"
+                            placeholder="Search records...">
 
-        </h4>
+                        <button
+                            class="btn btn-primary"
+                            type="submit">
 
-        <div class="mb-3">
+                            <i class="fa-solid
+                                      fa-magnifying-glass"></i>
 
-            <input
-                type="text"
-                id="searchInput"
-                class="form-control"
-                placeholder="🔍 Search by Name, Email or Phone..."
-                onkeyup="searchTable()">
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         RECORDS SECTION
+    ====================================== -->
+
+    <div class="card shadow-lg p-4 mb-4">
+
+        <div class="d-flex
+                    justify-content-between
+                    align-items-center
+                    flex-wrap
+                    gap-2
+                    mb-3">
+
+            <div>
+
+                <h4 class="mb-1">
+
+                    <i class="fa-solid fa-table"></i>
+
+                    Records
+
+                </h4>
+
+                <small class="text-muted">
+
+                    Clean and unique records
+
+                </small>
+
+            </div>
+
+
+            <a
+                href="/reset"
+                class="btn btn-outline-danger"
+                onclick="return confirm(
+                    'Are you sure you want to delete ALL records?'
+                );">
+
+                <i class="fa-solid fa-trash-can"></i>
+
+                Clear All
+
+            </a>
 
         </div>
 
 
         <div class="table-responsive">
 
-            <table class="table table-hover table-bordered"
-                   id="recordsTable">
+            <table class="table table-hover align-middle">
 
                 <thead>
 
-                <tr>
+                    <tr>
 
-                    <th>Name</th>
+                        <th>
+                            #
+                        </th>
 
-                    <th>Email</th>
+                        <th>
+                            Name
+                        </th>
 
-                    <th>Phone</th>
+                        <th>
+                            Email
+                        </th>
 
-                    <th width="120">
+                        <th>
+                            Phone
+                        </th>
 
-                        Action
+                        <th>
+                            Action
+                        </th>
 
-                    </th>
-
-                </tr>
+                    </tr>
 
                 </thead>
 
+
                 <tbody>
 
-                {% if records %}
+                    {% if records %}
 
-                    {% for record in records %}
+                        {% for record in records %}
 
-                    <tr>
+                            <tr>
 
-                        <td>
+                                <td>
 
-                            {{ record.name }}
+                                    <span
+                                        class="record-number">
 
-                        </td>
+                                        {{ loop.index }}
 
-                        <td>
+                                    </span>
 
-                            {{ record.email }}
+                                </td>
 
-                        </td>
 
-                        <td>
+                                <td>
 
-                            {{ record.phone }}
+                                    <div
+                                        class="record-name">
 
-                        </td>
+                                        <div
+                                            class="record-avatar">
 
-                        <td>
+                                            {{
+                                                record.get(
+                                                    'name',
+                                                    'U'
+                                                )[:1]|upper
+                                            }}
 
-                            <a href="/delete/{{ record.email }}"
-                               class="btn btn-danger btn-sm w-100"
-                               onclick="return confirm('Delete this record?')">
+                                        </div>
 
-                                🗑 Delete
+                                        <span>
 
-                            </a>
+                                            {{
+                                                record.get(
+                                                    'name',
+                                                    'Unknown'
+                                                )
+                                            }}
 
-                        </td>
+                                        </span>
 
-                    </tr>
+                                    </div>
 
-                    {% endfor %}
+                                </td>
 
-                {% else %}
 
-                    <tr>
+                                <td>
 
-                        <td colspan="4" class="text-center">
+                                    {% if record.get('email') %}
 
-                            No Records Found
+                                        <span
+                                            class="email-text">
 
-                        </td>
+                                            <i class="fa-solid
+                                                      fa-envelope"></i>
 
-                    </tr>
+                                            {{
+                                                record.get(
+                                                    'email'
+                                                )
+                                            }}
 
-                {% endif %}
+                                        </span>
+
+                                    {% else %}
+
+                                        <span
+                                            class="text-muted">
+
+                                            —
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td>
+
+                                    {% if record.get('phone') %}
+
+                                        <span>
+
+                                            <i class="fa-solid
+                                                      fa-phone"></i>
+
+                                            {{
+                                                record.get(
+                                                    'phone'
+                                                )
+                                            }}
+
+                                        </span>
+
+                                    {% else %}
+
+                                        <span
+                                            class="text-muted">
+
+                                            —
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td>
+
+                                    <a
+                                        href="/delete/{{ loop.index0 }}"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm(
+                                            'Delete this record?'
+                                        );">
+
+                                        <i class="fa-solid
+                                                  fa-trash"></i>
+
+                                        Delete
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="text-center py-5">
+
+                                <div
+                                    class="empty-state">
+
+                                    <i class="fa-solid
+                                              fa-folder-open
+                                              fa-3x"></i>
+
+                                    <h5 class="mt-3">
+
+                                        No Records Found
+
+                                    </h5>
+
+                                    <p class="text-muted mb-0">
+
+                                        Upload a CSV file to
+                                        start deduplicating data.
+
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
 
                 </tbody>
 
@@ -302,42 +688,140 @@
 
     </div>
 
+    <!-- =====================================
+         LAST UPLOAD SUMMARY
+    ====================================== -->
+
+    {% if session.get("last_upload") %}
+
+    <div class="card shadow-lg p-4 mb-4">
+
+        <div class="d-flex align-items-center gap-3">
+
+            <div class="upload-success-icon">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h5 class="mb-1">
+
+                    Last Upload Completed
+
+                </h5>
+
+                <p class="text-muted mb-0">
+
+                    {{ session["last_upload"]["filename"] }}
+
+                    •
+
+                    {{ session["last_upload"]["time"] }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 g-3">
+
+            <div class="col-md-6">
+
+                <div class="upload-stat">
+
+                    <span>
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        New Records Added
+
+                    </span>
+
+                    <strong>
+
+                        {{ session["last_upload"]["added"] }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="upload-stat">
+
+                    <span>
+
+                        <i class="fa-solid fa-copy"></i>
+
+                        Duplicates Removed
+
+                    </span>
+
+                    <strong>
+
+                        {{ session["last_upload"]["duplicates"] }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer class="text-center mt-5 mb-3">
+
+        <hr>
+
+        <p class="text-white mb-1">
+
+            <i class="fa-solid fa-cloud"></i>
+
+            Cloud Data Deduplication System
+
+        </p>
+
+        <small class="text-light">
+
+            Premium Edition • CODSOFT Internship
+
+        </small>
+
+    </footer>
+
+
 </div>
 
 
-<script>
+<!-- Bootstrap -->
 
-function searchTable(){
-
-    let input=document.getElementById("searchInput").value.toLowerCase();
-
-    let table=document.getElementById("recordsTable");
-
-    let tr=table.getElementsByTagName("tr");
-
-    for(let i=1;i<tr.length;i++){
-
-        let txt=tr[i].textContent.toLowerCase();
-
-        if(txt.indexOf(input)>-1){
-
-            tr[i].style.display="";
-
-        }
-
-        else{
-
-            tr[i].style.display="none";
-
-        }
-
-    }
-
-}
-
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script
+    src="{{ url_for('static', filename='script.js') }}">
+</script>
+
 
 </body>
 

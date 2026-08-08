@@ -1,70 +1,1444 @@
-body{
-    background: linear-gradient(135deg,#4facfe,#00c6ff);
-    min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
+/* =========================================
+   PREMIUM DATA DEDUPLICATION UI
+   PART 1
+========================================= */
+
+@import url(
+    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'
+);
+
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-.container{
-    margin-top:40px;
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #2563eb,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #7c3aed,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a
+        );
+
+    background-attachment: fixed;
+
+    color: #1e293b;
+
 }
 
-.card{
-    border:none;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-    transition:.3s;
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.container {
+
+    max-width: 1250px;
+
 }
 
-.card:hover{
-    transform:translateY(-4px);
+
+/* =========================================
+   DASHBOARD CARDS
+========================================= */
+
+.dashboard-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 25px;
+
+    min-height: 190px;
+
+    border-radius: 22px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.20),
+            rgba(255,255,255,0.08)
+        );
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid
+        rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    animation:
+        fadeUp .6s ease;
+
 }
 
-.dashboard-card h2{
-    font-weight:bold;
+
+.dashboard-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+
+    height: 100px;
+
+    right: -35px;
+
+    top: -35px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.10);
+
 }
 
-.table{
-    border-radius:15px;
-    overflow:hidden;
+
+.dashboard-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 22px 50px
+        rgba(0,0,0,0.35);
+
 }
 
-.table thead{
-    background:#0d6efd;
-    color:white;
+
+.dashboard-card h6 {
+
+    margin-top: 18px;
+
+    margin-bottom: 5px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    color: #e2e8f0;
+
 }
 
-.btn{
-    border-radius:10px;
+
+.dashboard-card h2 {
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    margin: 0;
+
 }
 
-.btn:hover{
-    transform:scale(1.03);
-    transition:.2s;
+
+.dashboard-card small {
+
+    color: #cbd5e1;
+
 }
 
-.form-control{
-    border-radius:10px;
+
+/* =========================================
+   DASHBOARD ICON
+========================================= */
+
+.dashboard-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.15);
+
+    font-size: 22px;
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(255,255,255,0.08);
+
 }
 
-.header{
-    background:white;
-    padding:20px;
-    border-radius:18px;
-    margin-bottom:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+/* =========================================
+   MAIN CARDS
+========================================= */
+
+.card {
+
+    border: none;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.96);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.18);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+    animation:
+        fadeUp .6s ease;
+
 }
 
-.upload-card{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-    margin-bottom:25px;
+
+.card:hover {
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,0.24);
+
 }
 
-.records-card{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+.card h4 {
+
+    color: #1e3a8a;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn {
+
+    border-radius: 12px;
+
+    padding:
+        10px 16px;
+
+    font-weight: 600;
+
+    border: none;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.btn:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.btn-primary {
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(37,99,235,.25);
+
+}
+
+
+.btn-primary:hover {
+
+    box-shadow:
+        0 12px 25px
+        rgba(37,99,235,.35);
+
+}
+
+
+.btn-success {
+
+    background:
+        linear-gradient(
+            135deg,
+            #16a34a,
+            #059669
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(22,163,74,.22);
+
+}
+
+
+.btn-danger {
+
+    background:
+        linear-gradient(
+            135deg,
+            #dc2626,
+            #e11d48
+        );
+
+}
+
+
+.btn-warning {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #ea580c
+        );
+
+}
+
+
+/* =========================================
+   FORM CONTROLS
+========================================= */
+
+.form-control {
+
+    border-radius: 12px;
+
+    padding: 12px 15px;
+
+    border:
+        1px solid #cbd5e1;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.form-control:focus {
+
+    border-color:
+        #2563eb;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(37,99,235,.10);
+
+}
+
+
+/* =========================================
+   ALERTS
+========================================= */
+
+.alert {
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 14px 18px;
+
+    font-weight: 500;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.12);
+
+    animation:
+        fadeUp .4s ease;
+
+}
+/* =========================================
+   UPLOAD / DRAG & DROP
+========================================= */
+
+.drop-area {
+
+    border: 2px dashed #2563eb;
+
+    border-radius: 20px;
+
+    padding: 45px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #f8fafc
+        );
+
+    transition:
+        all .3s ease;
+
+    cursor: pointer;
+
+}
+
+
+.drop-area > i {
+
+    color: #2563eb;
+
+    transition:
+        transform .3s ease;
+
+}
+
+
+.drop-area:hover {
+
+    border-color: #4f46e5;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dbeafe,
+            #eef2ff
+        );
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.drop-area:hover > i {
+
+    transform:
+        translateY(-6px);
+
+}
+
+
+.drop-area.dragover {
+
+    border-color: #16a34a;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcfce7,
+            #ecfdf5
+        );
+
+    transform:
+        scale(1.01);
+
+}
+
+
+.drop-area h5 {
+
+    color: #1e3a8a;
+
+    font-weight: 600;
+
+}
+
+
+.drop-area p {
+
+    color: #64748b;
+
+}
+
+
+#selectedFile {
+
+    display: inline-block;
+
+    max-width: 90%;
+
+    padding:
+        8px 14px;
+
+    border-radius: 10px;
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+    font-weight: 600;
+
+    word-break: break-word;
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.input-group {
+
+    border-radius: 13px;
+
+    overflow: hidden;
+
+}
+
+
+.input-group .form-control {
+
+    border-radius:
+        13px 0 0 13px;
+
+}
+
+
+.input-group .btn {
+
+    border-radius:
+        0 13px 13px 0;
+
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.table {
+
+    margin-bottom: 0;
+
+    vertical-align: middle;
+
+}
+
+
+.table thead {
+
+    background:
+        linear-gradient(
+            135deg,
+            #1e3a8a,
+            #2563eb
+        );
+
+    color: white;
+
+}
+
+
+.table thead th {
+
+    padding: 15px;
+
+    border: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+.table tbody td {
+
+    padding: 14px 15px;
+
+    border-color: #e2e8f0;
+
+}
+
+
+.table tbody tr {
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+
+}
+
+
+.table tbody tr:hover {
+
+    background: #eff6ff;
+
+}
+
+
+.table tbody tr:hover td {
+
+    color: #1e3a8a;
+
+}
+
+
+/* =========================================
+   RECORD NUMBER
+========================================= */
+
+.record-number {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 10px;
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================
+   RECORD NAME
+========================================= */
+
+.record-name {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-weight: 600;
+
+    min-width: 150px;
+
+}
+
+
+.record-avatar {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 5px 15px
+        rgba(37,99,235,.25);
+
+}
+
+
+/* =========================================
+   EMAIL / PHONE
+========================================= */
+
+.email-text {
+
+    color: #475569;
+
+    word-break: break-word;
+
+}
+
+
+.email-text i {
+
+    color: #2563eb;
+
+    margin-right: 6px;
+
+}
+
+
+.table td > i {
+
+    margin-right: 6px;
+
+    color: #64748b;
+
+}
+
+
+/* =========================================
+   INFORMATION CARDS
+========================================= */
+
+.info-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.15);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.info-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 38px
+        rgba(0,0,0,.20);
+
+}
+
+
+.info-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+    font-size: 22px;
+
+    flex-shrink: 0;
+
+}
+
+
+.info-card h6 {
+
+    color: #64748b;
+
+    margin-bottom: 4px;
+
+    font-weight: 500;
+
+}
+
+
+.info-card h3 {
+
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+
+    padding: 25px;
+
+    color: #64748b;
+
+}
+
+
+.empty-state i {
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================
+   LAST UPLOAD
+========================================= */
+
+.upload-success-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #dcfce7;
+
+    color: #16a34a;
+
+    font-size: 24px;
+
+}
+
+
+.upload-stat {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 18px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+}
+
+
+.upload-stat span {
+
+    color: #475569;
+
+}
+
+
+.upload-stat i {
+
+    color: #2563eb;
+
+    margin-right: 7px;
+
+}
+
+
+.upload-stat strong {
+
+    color: #1e3a8a;
+
+    font-size: 20px;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer hr {
+
+    border-color:
+        rgba(255,255,255,.25);
+
+}
+
+
+footer p {
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================
+   GENERAL LINK
+========================================= */
+
+a {
+
+    text-decoration: none;
+
+}
+/* =========================================
+   LOGIN PAGE
+========================================= */
+
+.login-container {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+}
+
+
+.login-card {
+
+    width: 100%;
+
+    max-width: 440px;
+
+    padding: 40px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(255,255,255,.14);
+
+    backdrop-filter: blur(22px);
+
+    -webkit-backdrop-filter: blur(22px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.22);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.35);
+
+    color: white;
+
+    animation:
+        loginAppear .8s ease;
+
+}
+
+
+.login-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(37,99,235,.35);
+
+    font-size: 32px;
+
+}
+
+
+.login-card h2 {
+
+    font-weight: 700;
+
+}
+
+
+.login-card p {
+
+    color: #dbeafe;
+
+}
+
+
+.login-card .form-label {
+
+    color: white;
+
+    font-weight: 600;
+
+}
+
+
+.login-card .form-control {
+
+    background:
+        rgba(255,255,255,.95);
+
+    border: none;
+
+    padding: 13px 15px;
+
+}
+
+
+.login-card .form-control:focus {
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255,255,255,.18);
+
+}
+
+
+.login-btn {
+
+    padding: 13px;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================
+   INPUT WITH ICON
+========================================= */
+
+.input-with-icon {
+
+    position: relative;
+
+}
+
+
+.input-with-icon > i {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #64748b;
+
+    z-index: 2;
+
+}
+
+
+.input-with-icon .form-control {
+
+    padding-left: 42px;
+
+    padding-right: 45px;
+
+}
+
+
+/* =========================================
+   PASSWORD TOGGLE
+========================================= */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+}
+
+
+.password-toggle:hover {
+
+    color: #2563eb;
+
+}
+
+
+/* =========================================
+   DEMO CREDENTIALS
+========================================= */
+
+.demo-box {
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+}
+
+
+.demo-box small {
+
+    color: #dbeafe;
+
+}
+
+
+.demo-credentials {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    color: #f8fafc;
+
+}
+
+
+.demo-credentials span {
+
+    background:
+        rgba(255,255,255,.08);
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+
+}
+
+
+/* =========================================
+   LOGIN FOOTER
+========================================= */
+
+.login-footer {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+}
+
+
+.login-footer i {
+
+    margin-right: 5px;
+
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes loginAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+
+    width: 9px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #dbeafe;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            #2563eb,
+            #7c3aed
+        );
+
+    border-radius: 20px;
+
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+
+    }
+
+
+    .dashboard-card {
+
+        min-height: 165px;
+
+        padding: 20px;
+
+    }
+
+
+    .dashboard-card h2 {
+
+        font-size: 28px;
+
+    }
+
+
+    .card {
+
+        border-radius: 18px;
+
+    }
+
+
+    .drop-area {
+
+        padding: 30px 18px;
+
+    }
+
+
+    .table {
+
+        font-size: 13px;
+
+    }
+
+
+    .table thead th,
+    .table tbody td {
+
+        padding: 11px;
+
+    }
+
+
+    .info-card {
+
+        padding: 18px;
+
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .login-card {
+
+        padding: 28px 22px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .login-icon {
+
+        width: 70px;
+
+        height: 70px;
+
+    }
+
+
+    .demo-credentials {
+
+        flex-direction: column;
+
+    }
+
+
+    .dashboard-card {
+
+        min-height: 150px;
+
+    }
+
+
+    .record-name {
+
+        min-width: 120px;
+
+    }
+
+
+    .record-avatar {
+
+        width: 32px;
+
+        height: 32px;
+
+    }
+
+
+    .upload-stat {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
 }
