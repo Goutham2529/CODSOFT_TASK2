@@ -1,143 +1,92 @@
 # ☁️ Cloud Data Deduplication System
 
-A Flask-based web application that uploads CSV files, detects duplicate records, and stores only unique data. The system provides an interactive dashboard to manage records efficiently.
+A premium web-based **Cloud Data Deduplication System** developed using **Python Flask**.
+
+The application allows users to upload CSV files, automatically detect duplicate records using **Email or Phone Number**, remove duplicates, and download the cleaned dataset.
 
 ---
 
-## 📌 Features
+## 🚀 Features
 
-- 🔐 Admin Login Authentication
-- 📤 Upload CSV Files
-- 📊 Dashboard Statistics
-  - Total Uploaded Records
-  - Unique Records
-  - Duplicates Removed
-- 🔍 Search Records
+- 📤 CSV File Upload
+- 🔍 Automatic Duplicate Detection
+- 📧 Email-based Duplicate Detection
+- 📱 Phone Number-based Duplicate Detection
+- 📊 Premium Dashboard
+- 🔎 Search Records
 - 🗑️ Delete Individual Records
-- 🔄 Reset Database
-- 📥 Download Sample CSV
-- 💾 JSON-based Data Storage
-- 📱 Responsive Bootstrap UI
+- 🧹 Clear All Records
+- 📥 Download Cleaned CSV
+- 📄 Download Sample CSV
+- 🔐 Login Authentication
+- 📈 Record Statistics
+- 🖱️ Drag & Drop CSV Upload
+- 📱 Responsive UI
+- ✨ Premium Animations
+- 🩺 Application Health Check
 
 ---
 
-## 🛠️ Technologies Used
+## 🧠 Duplicate Detection Logic
 
-- Python
-- Flask
-- HTML5
-- CSS3
-- Bootstrap 5
-- JSON
-- CSV
+The system considers a record as a duplicate when:
 
----
+| Condition | Result |
+|---|---|
+| Same Email | ❌ Duplicate |
+| Same Phone Number | ❌ Duplicate |
+| Same Email + Same Phone | ❌ Duplicate |
+| Different Email + Different Phone | ✅ New Record |
 
-## 📂 Project Structure
+### Example
 
-```
+```text
+Rahul   rahul@gmail.com   9876543210
+Arjun   arjun@gmail.com   9876543210
+
+The second record is detected as a duplicate because the phone number is already present.
+
+🛠️ Technologies Used
+Python
+Flask
+HTML5
+CSS3
+JavaScript
+Bootstrap 5
+Font Awesome
+JSON
+CSV
+Git & GitHub
+📂 Project Structure
 cloud-data-deduplication/
 │
 ├── app.py
 ├── records.json
-├── sample.csv
 ├── requirements.txt
-├── Procfile
-├── runtime.txt
-│
-├── static/
-│   └── style.css
+├── README.md
 │
 ├── templates/
-│   ├── login.html
-│   └── index.html
+│   ├── index.html
+│   └── login.html
+│
+├── static/
+│   ├── style.css
+│   └── script.js
 │
 └── uploads/
-```
+🔐 Demo Login
+Username: admin
+Password: admin123
+▶️ How to Run
 
----
+Install the required packages:
 
-## 🚀 Installation
-
-Clone the repository
-
-```bash
-git clone https://github.com/Goutham2529/CODSOFT_TASK2.git
-```
-
-Move into the project folder
-
-```bash
-cd CODSOFT_TASK2
-```
-
-Install dependencies
-
-```bash
 pip install -r requirements.txt
-```
 
-Run the application
+Run the Flask application:
 
-```bash
 python app.py
-```
 
----
+Open the application in your browser:
 
-## 🔑 Login Credentials
-
-**Username**
-
-```
-admin
-```
-
-**Password**
-
-```
-admin123
-```
-
----
-
-## 📊 Dashboard
-
-The dashboard displays:
-
-- Total Uploaded Records
-- Unique Records
-- Duplicate Records Removed
-
----
-
-## 📸 Screenshots
-
-### 🔐 Login Page
-
-<img width="1909" height="910" alt="login" src="https://github.com/user-attachments/assets/4fc12048-d643-4ef7-9e28-40f813d1fde9" />
-
-### 📊 Dashboard
-
-<img width="1879" height="909" alt="dashboard" src="https://github.com/user-attachments/assets/c0e1c2cc-0712-445d-9021-1133bd2e8432" />
-
-### 📤 Upload CSV
-
-<img width="1870" height="625" alt="upload csv" src="https://github.com/user-attachments/assets/817812e3-25ea-4543-b18d-b8df32010241" />
-
-### 📋 Stored Records
-
-<img width="1850" height="493" alt="stored records" src="https://github.com/user-attachments/assets/a88329a3-46ec-42d4-866c-fa0e942c33e4" />
-
-
-## 🌐 Live Demo
-
-https://codsoft-task2-e9wj.onrender.com
-
----
-
-## 👨‍💻 Developed By
-
-Goutham
-
-CodSoft Cloud Computing Internship – Task 2
+http://127.0.0.1:5000
