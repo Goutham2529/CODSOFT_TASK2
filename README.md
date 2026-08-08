@@ -1,23 +1,48 @@
 # ☁️ Cloud Data Deduplication System
 
-A Flask-based web application that uploads CSV files, detects duplicate records, and stores only unique data. The system provides an interactive dashboard to manage records efficiently.
+A premium web-based **Cloud Data Deduplication System** built using Python Flask.
+
+This application allows users to upload CSV files, automatically detect duplicate records using Email or Phone Number, remove duplicates, and download the cleaned dataset.
 
 ---
 
-## 📌 Features
+## 🚀 Features
 
-- 🔐 Admin Login Authentication
-- 📤 Upload CSV Files
-- 📊 Dashboard Statistics
-  - Total Uploaded Records
-  - Unique Records
-  - Duplicates Removed
-- 🔍 Search Records
+- 📤 CSV File Upload
+- 🔍 Automatic Duplicate Detection
+- 📧 Email-based Duplicate Detection
+- 📱 Phone Number-based Duplicate Detection
+- 📊 Premium Dashboard
+- 🔎 Search Records
 - 🗑️ Delete Individual Records
-- 🔄 Reset Database
-- 📥 Download Sample CSV
-- 💾 JSON-based Data Storage
-- 📱 Responsive Bootstrap UI
+- 🧹 Clear All Records
+- 📥 Download Cleaned CSV
+- 📄 Download Sample CSV
+- 🔐 Login Authentication
+- 📈 Record Statistics
+- 🖱️ Drag & Drop CSV Upload
+- 📱 Responsive Design
+- ✨ Premium Animations
+- 🩺 Application Health Check
+
+---
+
+## 🧠 Duplicate Detection
+
+The system identifies a record as a duplicate when either the email address or phone number already exists.
+
+| Email | Phone | Result |
+|---|---|---|
+| Same | Different | ❌ Duplicate |
+| Different | Same | ❌ Duplicate |
+| Same | Same | ❌ Duplicate |
+| Different | Different | ✅ New Record |
+
+### Example
+
+```text
+Rahul   rahul@gmail.com   9876543210
+Arjun   arjun@gmail.com   9876543210
 
 ---
 
@@ -47,6 +72,7 @@ cloud-data-deduplication/
 │
 ├── static/
 │   └── style.css
+|   └── script.js
 │
 ├── templates/
 │   ├── login.html
@@ -108,6 +134,7 @@ The dashboard displays:
 - Total Uploaded Records
 - Unique Records
 - Duplicate Records Removed
+- Unique Emails
 
 ---
 
