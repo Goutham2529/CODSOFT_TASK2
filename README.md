@@ -195,8 +195,6 @@ screenshots/
 └── duplicates.png
 ```
 
-Once the images are added, this README will display them automatically:
-
 ### 🔐 Premium Login Page
 
 ![Premium Login Page](screenshots/login.png)
